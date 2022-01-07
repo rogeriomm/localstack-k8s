@@ -38,6 +38,7 @@ provider "aws" {
 ```
 
 # Sample terraform
+## AWS S3
 ```shell
 cd terraform
 terraform init

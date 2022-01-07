@@ -1,6 +1,7 @@
-
+# Overview
   * Localstack API
-     * https://localstack-api.worldl.xpt
+     * https://localstack.localstack.svc.cluster.local:4566
+     * https://localstack-api.worldl.xpt (Using SSL connection via ingress)
 
 # Install
 ```shell
@@ -20,13 +21,14 @@ export LOCALSTACK_HOST=localstack.localstack.svc.cluster.local
    * https://docs.localstack.cloud/integrations/aws-cli/: AWS Command Line Interface
 
 # Checks
-```commandline
+```shell
 aws --endpoint-url=https://localstack-api.worldl.xpt s3 ls
 aws --endpoint-url=http://localstack.localstack.svc.cluster.local:4566 s3 ls
+LOCALSTACK_HOST=localstack.localstack.svc.cluster.local awslocal s3 ls
 awslocal s3 ls
 ```
 
-```commandline
+```shell
 aws --endpoint-url=https://localstack-api.worldl.xpt lambda list-aliases --function-name name
 ```
 
