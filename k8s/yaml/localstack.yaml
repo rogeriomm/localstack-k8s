@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: localstack
+  labels:
+    release: localstack
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  selector:
+    matchLabels:
+      release: localstack
+  template:
+    metadata:
+      labels:
+        release: localstack
+    spec:
+      containers:
+      - name: localstack
+        image: "localstack/localstack:0.13.3"
+        ports:
+        - name: http
+          containerPort: 4566
+          protocol: TCP
+        env:
+        - name: HOSTNAME_EXTERNAL
+          value: "localstack.kube-system.svc.cluster.local"
+        - name: SERVICES
+          value: "s3"
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 1024Mi
+          requests:
+            cpu: 1000m
+            memory: 512Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: localstack
+  labels:
+    release: localstack
+spec:
+  type: ClusterIP
+  selector:
+    release: localstack
+  ports:
+  - name: http
+    port: 4566
+    protocol: TCP
