@@ -30,7 +30,10 @@ spec:
         - name: HOSTNAME_EXTERNAL
           value: "localstack.kube-system.svc.cluster.local"
         - name: SERVICES
-          value: "s3"
+          value: "s3,sqs,dynamodb,ec2,sts,lambda"
+        - name: PORT_WEB_UI
+          value: "9000"
+
         resources:
           limits:
             cpu: 1000m
@@ -52,4 +55,19 @@ spec:
   ports:
   - name: http
     port: 4566
+    protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: localstack-gui
+  labels:
+    release: localstack
+spec:
+  type: ClusterIP
+  selector:
+    release: localstack
+  ports:
+  - name: http
+    port: 9000
     protocol: TCP
