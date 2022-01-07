@@ -30,7 +30,7 @@ spec:
         - name: HOSTNAME_EXTERNAL
           value: "localstack.kube-system.svc.cluster.local"
         - name: SERVICES
-          value: "s3,sqs,dynamodb,ec2,sts,lambda"
+          value: "s3,sqs,dynamodb,ec2,sts,lambda,route53,iam,kms,kinesis,cloudwatch"
         - name: PORT_WEB_UI
           value: "9000"
 

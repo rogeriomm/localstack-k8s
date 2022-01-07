@@ -17,6 +17,8 @@ kubectl apply -n localstack -f ingress.yaml
 ```shell
 export LOCALSTACK_HOST=localstack.localstack.svc.cluster.local
 ```
+   * https://docs.localstack.cloud/integrations/aws-cli/: AWS Command Line Interface
+
 # Checks
 ```commandline
 aws --endpoint-url=https://localstack-api.worldl.xpt s3 ls
